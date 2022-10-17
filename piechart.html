@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+</head>
+<body>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple pie chart with embedded data.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kryzsmln/3179/main/2020_Olympics_Dataset.csv"
+  },
+  "mark": "arc",
+  "encoding": {
+    "theta": {"field": "Gender", "type": "nominal", "aggregate": "count"},
+    "color": {
+      "field": "Gender",
+      "type": "nominal",
+      "scale": {"domain": ["Male", "Female"], "range": ["#0004ff", "#f21105"]}
+    }
+  },
+  "config": {}
+};
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
+</body>
+</html>
